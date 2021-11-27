@@ -12,7 +12,7 @@ const ResolveAuthScreen = ({ navigation }) => {
 
   return null   // we are returning null because we don't want to render anything
 }
-
+const styles = StyleSheet.create({})
 export default ResolveAuthScreen
 
 /* 
