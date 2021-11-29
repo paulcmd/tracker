@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { StyleSheet, View } from 'react-native'
 import Spacer from '../components/Spacer'
 import { Context as AuthContext } from '../context/AuthContext'
@@ -18,18 +19,20 @@ const SigninScreen = ({ navigation }) => {
     }, [navigation])
 
     return (
-        <View style={styles.container}>
-            <AuthForm
-                headerText="Sign In to Tracker"
-                errorMessage={errorMessage}
-                submitButtonText="Sign In"
-                onSubmit={signin}
-            />
-            <NavLink
-                text="Dont have an account? Sign Up instead"
-                routeName="Signup"
-            />
-        </View>
+        <SafeAreaView style={styles.container} edges={['top']}>
+            <Spacer />
+                <AuthForm
+                    headerText="Sign In to Tracker"
+                    errorMessage={errorMessage}
+                    submitButtonText="Sign In"
+                    onSubmit={signin}
+                />
+                <NavLink
+                    text="Dont have an account? Sign Up instead"
+                    routeName="Signup"
+                />
+            
+        </SafeAreaView>
     )
 }
 
@@ -39,7 +42,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        marginBottom: 200
+        marginBottom: 140,
+        margin: 0,
     }
 })
 

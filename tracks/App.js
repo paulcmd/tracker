@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 
 import AccountScreen from './src/screens/AccountScreen'
@@ -51,9 +52,11 @@ const App = () => {
     console.log('token from App : ', token)
 
     return (
+        <SafeAreaProvider>
         <NavigationContainer>
             {!token ? <AuthStackFlow /> : <MainStackFlow />}
         </NavigationContainer>
+        </SafeAreaProvider>
     )
 }
 

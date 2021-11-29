@@ -35,7 +35,7 @@ mongoose.connection.on('connected', () => {
 
 //callback runs when the connection fails
 mongoose.connection.on('error', (err) => {
-    console.log('Error connecting to mongo', err)
+    console.log('Error connecting to mongo : ', err)
 })
 
 app.get('/', requireAuth, (req, res) => {
