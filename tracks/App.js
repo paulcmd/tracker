@@ -13,6 +13,7 @@ import TrackDetailScreen from './src/screens/TrackDetailScreen'
 import TrackListScreen from './src/screens/TrackListScreen'
 import { Provider as AuthProvider } from './src/context/AuthContext'
 import { Context as AuthContext } from './src/context/AuthContext'
+import { Provider as LocationProvider } from './src/context/LocationContext'
 import ResolveAuthScreen from './src/screens/ResolveAuthScreen'
 
 const AuthStack = createStackNavigator()
@@ -48,22 +49,24 @@ const MainStackFlow = () => (
 
 const App = () => {
     const { state } = useContext(AuthContext)
-    const { token } = state  // token will come from either signin and signup cases in authReducer within AuthContext
+    const { token } = state // token will come from either signin and signup cases in authReducer within AuthContext
     console.log('token from App : ', token)
 
     return (
         <SafeAreaProvider>
-        <NavigationContainer>
-            {!token ? <AuthStackFlow /> : <MainStackFlow />}
-        </NavigationContainer>
+            <NavigationContainer>
+                {!token ? <AuthStackFlow /> : <MainStackFlow />}
+            </NavigationContainer>
         </SafeAreaProvider>
     )
 }
 
 export default () => {
     return (
-        <AuthProvider>
-            <App />
-        </AuthProvider>
+        <LocationProvider>
+            <AuthProvider>
+                <App />
+            </AuthProvider>
+        </LocationProvider>
     )
 }
