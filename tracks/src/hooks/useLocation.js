@@ -6,17 +6,17 @@ import {
     Accuracy
 } from 'expo-location'
 
-export default (callback) => {
-   
+export default (shouldTrack, callback) => {
     const [err, setErr] = useState(null)
+    const [subscriber, setSubscriber] = useState(null)
 
-    const getLocation = async () => {
+    const watchLocation = async () => {
         try {
             const { granted } = await requestForegroundPermissionsAsync()
             if (!granted) {
                 setErr('Permission to access location was denied')
             }
-            await watchPositionAsync(
+            const sub = await watchPositionAsync(
                 // watchPosition tells us to keep watching/track of the position
                 {
                     accuracy: Accuracy.BestForNavigation, // Accuracy.BestForNavigation is the best accuracy
@@ -27,14 +27,19 @@ export default (callback) => {
                 //     addLocation(location)
                 callback
             )
+            setSubscriber(sub)
         } catch (err) {
             setErr(err.message)
         }
     }
 
     useEffect(() => {
-        getLocation()
-    }, [])
+        if (shouldTrack) {  //if isFocused is true
+            watchLocation()
+        } else {
+            subscriber && subscriber.remove()
+        }
+    }, [shouldTrack]) // if shouldTrack changes, run watchLocation
 
-    return  [err] 
+    return [err]
 }
