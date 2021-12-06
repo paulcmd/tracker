@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import {
     requestForegroundPermissionsAsync,
@@ -38,6 +38,7 @@ export default (shouldTrack, callback) => {
             watchLocation()
         } else {
             subscriber && subscriber.remove()
+            setSubscriber(null) //sub has been removed, so we set subscriber state to null
         }
     }, [shouldTrack]) // if shouldTrack changes, run watchLocation
 

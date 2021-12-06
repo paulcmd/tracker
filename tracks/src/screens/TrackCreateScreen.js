@@ -6,6 +6,7 @@ import { Text } from 'react-native-elements'
 import { Context as LocationContext } from '../context/LocationContext'
 import Map from '../components/Map'
 import useLocation from '../hooks/useLocation'
+import TrackForm from '../components/TrackForm'
 import '../_mockLocation'
 
 const TrackCreateScreen = () => {
@@ -18,6 +19,7 @@ const TrackCreateScreen = () => {
             <Text h2>Creat a Track!</Text>
             <Map />
             {err ? <Text>{err}</Text> : null}
+            <TrackForm />
         </SafeAreaView>
     )
 }
