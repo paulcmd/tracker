@@ -17,7 +17,7 @@ const Map = () => {
     const {
         state: { currentLocation }
     } = useContext(LocationContext)
-    console.log(currentLocation)
+    //console.log(currentLocation)
 
     
     if (!currentLocation) {

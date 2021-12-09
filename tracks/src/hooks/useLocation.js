@@ -6,7 +6,7 @@ import {
     Accuracy
 } from 'expo-location'
 
-export default (shouldTrack, callback) => {
+export default (shouldTrack, callback) => {    // shouldTrack is isFocused from TrackCreate, callback is addLocation
     const [err, setErr] = useState(null)
     const [subscriber, setSubscriber] = useState(null)
 
