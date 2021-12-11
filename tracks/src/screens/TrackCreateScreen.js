@@ -12,22 +12,22 @@ import '../_mockLocation'
 const TrackCreateScreen = () => {
     const isFocused = useIsFocused()
     const {
-        state: { name, recording },
+        state: { recording },   // destructuring recording from state
         addLocation,
-        changeName
     } = useContext(LocationContext)
     const [err] = useLocation(isFocused, (location) => {
         addLocation(location, recording)
     }) //addLocation is the callback in useLocation that will be called to pick up the location
+    // addLocation will be used in TrackForm to add recorded location to the track
     //err is the only parameter that is returned from useLocation. location is dispatched by addLocation to the  LocationContext reducer
 
-    console.log('Track Name', name)
+   // console.log('Track Name', name)
     return (
         <SafeAreaView>
             <Text h2>Creat a Track!</Text>
             <Map />
             {err ? <Text>{err}</Text> : null}
-            <TrackForm changeName={changeName} />
+            <TrackForm  />
         </SafeAreaView>
     )
 }
