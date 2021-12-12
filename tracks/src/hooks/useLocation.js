@@ -6,7 +6,8 @@ import {
     Accuracy
 } from 'expo-location'
 
-export default (shouldTrack, callback) => {    // shouldTrack is isFocused from TrackCreate, callback is addLocation
+export default (shouldTrack, callback) => {
+    // shouldTrack is isFocused from TrackCreate, callback is addLocation
     const [err, setErr] = useState(null)
     const [subscriber, setSubscriber] = useState(null)
 
@@ -34,13 +35,28 @@ export default (shouldTrack, callback) => {    // shouldTrack is isFocused from 
     }
 
     useEffect(() => {
-        if (shouldTrack) {  //if isFocused is true
+        if (shouldTrack) {
+            //if isFocused is true
             watchLocation()
         } else {
             subscriber && subscriber.remove()
             setSubscriber(null) //sub has been removed, so we set subscriber state to null
         }
     }, [shouldTrack]) // if shouldTrack changes, run watchLocation
+    /* 
+    (location) => {
+        addLocation(location, recording)
+    }
+    VIDEO - 257 AND 258
+    the recording variable gets called the first time only ie [] because we are not tracking [recording],
+    we are only tracking [shouldTrack] ie isFocused. ie we are only get locations out of watchLocation
+    when shouldTrack is true. but recording is not being tracked so its still at [] which is false, ie first render
+    ideal situation would be [shouldTrack, callback] (callback is addLocation)
+    react checks is the initial instance of callback === new instance of callback (ie if callback is not the same, call watchLocation again)
+    the same way it checks if [shouldTrack] === [shouldTrack] (ie if one instance is true and the other false.)
+    [shouldTrack, callback] doesnt work tho because we are calling watchLocation too many times till the app crashes.
+
+    */
 
     return [err]
 }
