@@ -10,7 +10,7 @@ const TrackForm = () => {
         stopRecording,
         changeName
     } = useContext(LocationContext)
-console.log('locations : ', locations && locations.length)
+console.log('locations : ', locations )
     return (
         <>
             <Spacer>
