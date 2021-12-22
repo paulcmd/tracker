@@ -10,7 +10,7 @@ const TrackForm = () => {
         stopRecording,
         changeName
     } = useContext(LocationContext)
-//console.log('locations : ', locations )
+
     return (
         <>
             <Spacer>
@@ -25,6 +25,10 @@ const TrackForm = () => {
             ) : (
                 <Button title="Start Recording" onPress={startRecording} />
             )}
+            <Spacer />
+            {!recording && locations.length ? (
+                <Button title="Save Recording" />
+            ) : null}
         </>
     )
 }
@@ -32,3 +36,4 @@ const TrackForm = () => {
 export default TrackForm
 
 // on press, flip a boolean to start recording
+// set up app to record my location as I walk around the neighborhood 

@@ -38,13 +38,18 @@ const Map = () => {
                 strokeColor="rgba(158, 158, 255, 1.0)"
                 fillColor="rgba(158, 158, 255, 0.3)"
             />
-            <Polyline coordinates={locations.map((loc) => {
-                console.log(loc.coords.latitude)
-                return {
-                    latitude: loc.coords ? loc.coords.latitude : 0,
-                    longitude: loc.coords ? loc.coords.longitude : 0
-                }
-            })} />
+            <Polyline
+                coordinates={locations.map((loc) => {
+                    console.log(loc.coords.latitude)
+                    return {
+                        latitude: loc?.coords.latitude,
+                        longitude: loc?.coords.longitude
+                    }
+                })}
+                strokeColor="black"
+                strokeWidth={3}
+                lineDashPattern={[1]}
+            />
         </MapView>
     )
 }
