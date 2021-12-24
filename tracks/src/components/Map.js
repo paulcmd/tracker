@@ -40,7 +40,7 @@ const Map = () => {
             />
             <Polyline
                 coordinates={locations.map((loc) => {
-                    console.log(loc.coords.latitude)
+                   // console.log(loc.coords.latitude)
                     return {
                         latitude: loc?.coords.latitude,
                         longitude: loc?.coords.longitude
@@ -58,7 +58,7 @@ export default Map
 
 const styles = StyleSheet.create({
     map: {
-        height: 450
+        height: 315
     }
 })
 

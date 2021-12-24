@@ -105,3 +105,8 @@ export const { Provider, Context } = createDataContext(
     { signup, signin, signout, clearErrorMessage, tryLocalSignin },
     { token: null, errorMessage: '' } //if token is present then user is logged in
 )
+
+/* 
+The token has 2 uses. to authenticate ourselves when we log in and to authenticate the user when we send a request to the server.
+
+*/

@@ -42,7 +42,7 @@ const addLocation = (dispatch) => {
 
 const changeName = (dispatch) => {
     return (name) => {
-        console.log('name from changename in context : ', name)
+       // console.log('name from changename in context : ', name)
         dispatch({ type: 'change_name', payload: name })
     }
 }

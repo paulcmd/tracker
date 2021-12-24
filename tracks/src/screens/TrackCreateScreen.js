@@ -16,11 +16,14 @@ const TrackCreateScreen = () => {
         addLocation
     } = useContext(LocationContext)
 
-    const callback = useCallback((location) => {
-        addLocation(location, recording)
-    },[recording])
+    const callback = useCallback(
+        (location) => {
+            addLocation(location, recording)
+        },
+        [recording]
+    )
 
-    const [err] = useLocation(isFocused || recording , callback)  // if isFocused is true or user hit recording(even if isFocused is not true), then we want to get location, 
+    const [err] = useLocation(isFocused || recording, callback) // if isFocused is true or user hit recording(even if isFocused is not true), then we want to get location,
     //otherwise we don't want to get location
     //addLocation is the callback in useLocation that will be called to pick up the location
     // addLocation will be used in TrackForm to add recorded location to the track
@@ -28,7 +31,7 @@ const TrackCreateScreen = () => {
 
     // console.log('Track Name', name)
     return (
-        <SafeAreaView>
+        <SafeAreaView styles={styles.container}>
             <Text h2>Creat a Track!</Text>
             <Map />
             {err ? <Text>{err}</Text> : null}
@@ -37,6 +40,12 @@ const TrackCreateScreen = () => {
     )
 }
 //if we lose focus, unsub from the location updates
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        margin: 10,
+        borderColor: 'black',
+        borderWidth: 1,
+    }
+})
 
 export default TrackCreateScreen
