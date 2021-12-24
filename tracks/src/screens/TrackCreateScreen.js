@@ -1,6 +1,6 @@
 import React, { useContext, useCallback } from 'react'
 import { useIsFocused } from '@react-navigation/native'
-import { StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Text } from 'react-native-elements'
 import { Context as LocationContext } from '../context/LocationContext'
@@ -31,21 +31,30 @@ const TrackCreateScreen = () => {
 
     // console.log('Track Name', name)
     return (
-        <SafeAreaView styles={styles.container}>
-            <Text h2>Creat a Track!</Text>
+        <View style={styles.container}>
+            <Text h3>Creat a Track!</Text>
             <Map />
             {err ? <Text>{err}</Text> : null}
             <TrackForm />
-        </SafeAreaView>
+        </View>
     )
 }
 //if we lose focus, unsub from the location updates
-const styles = StyleSheet.create({
-    container: {
-        margin: 10,
-        borderColor: 'black',
-        borderWidth: 1,
-    }
-})
 
 export default TrackCreateScreen
+
+const styles = StyleSheet.create({
+    container: {
+        margin: 7,
+        padding: 5,
+        flex: 1,
+        borderColor: 'black',
+        borderWidth: 0.5,
+        backgroundColor: '#fff',
+        elevation: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 2, height: 2 },
+        shadowOpacity: 1,
+        shadowRadius: 2
+    }
+})

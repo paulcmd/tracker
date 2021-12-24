@@ -2,7 +2,7 @@ import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const axiosInstance = axios.create({
-    baseURL: 'http://dab1-2607-fb90-729d-572a-951c-ef61-6289-25c3.ngrok.io'
+    baseURL: 'http://9929-2607-fb90-729d-572a-951c-ef61-6289-25c3.ngrok.io'
 })
 
 axiosInstance.interceptors.request.use(
@@ -11,7 +11,7 @@ axiosInstance.interceptors.request.use(
         const token = await AsyncStorage.getItem('token')
         if (token) {
             config.headers.Authorization = `Bearer ${token}`  //if we have a token, add it to the header as a Bearer token
-            console.log('config.headers.Authorization', config)
+           // console.log('config.headers.Authorization', config)
         }
         return config
     },
